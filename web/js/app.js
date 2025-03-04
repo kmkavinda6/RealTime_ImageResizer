@@ -22,8 +22,28 @@ document.addEventListener('DOMContentLoaded', function() {
     let filesProcessed = 0;
     
     // Event Listeners
-    sourceBrowse.addEventListener('click', () => browseFolder(sourceFolder));
-    destBrowse.addEventListener('click', () => browseFolder(destFolder));
+    sourceBrowse.addEventListener('click', async () => {
+        try {
+            const folder = await eel.browse_folder()();
+            if (folder) {
+                sourceFolder.value = folder;
+            }
+        } catch (error) {
+            addLogEntry(`Error browsing folder: ${error}`, 'error');
+        }
+    });
+    
+    destBrowse.addEventListener('click', async () => {
+        try {
+            const folder = await eel.browse_folder()();
+            if (folder) {
+                destFolder.value = folder;
+            }
+        } catch (error) {
+            addLogEntry(`Error browsing folder: ${error}`, 'error');
+        }
+    });
+    
     startBtn.addEventListener('click', startProcessing);
     stopBtn.addEventListener('click', stopProcessing);
     
@@ -34,27 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize UI state
     updateResizeOptions();
     updateUIState();
-    
-    // Function to browse for a folder
-    async function browseFolder(inputElement) {
-        try {
-            // Use Python to open a folder dialog
-            const result = await eel.python_function(
-                'import tkinter as tk;' +
-                'from tkinter import filedialog;' +
-                'root = tk.Tk();' +
-                'root.withdraw();' +
-                'folder = filedialog.askdirectory();' +
-                'folder'
-            )();
-            
-            if (result) {
-                inputElement.value = result;
-            }
-        } catch (error) {
-            addLogEntry(`Error browsing folder: ${error}`, 'error');
-        }
-    }
     
     // Function to update resize options based on selected method
     function updateResizeOptions() {
