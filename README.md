@@ -1,58 +1,115 @@
-# Image Resizer
+# Real Time Image Resizer
 
-A Python application that monitors a source folder for images, resizes them according to specified parameters, and saves them to a destination folder. The application features a web-based user interface built with Eel.
+A powerful Python-based image processing application with a modern web interface for bulk image resizing operations. Built with Eel for seamless desktop-web integration.
 
 ## Features
 
-- Monitor a source folder for new images
-- Automatically resize new images as they are added
-- Preserve aspect ratio using scaling factor or single-side resolution
-- Web-based user interface
-- Progress tracking and logging
-- Avoid re-processing already processed images
+- Real-time folder monitoring for automatic image processing
+- Multiple resize options:
+  - Scale by percentage
+  - Fixed width/height with aspect ratio preservation
+- Batch processing capability
+- Support for multiple image formats (PNG, JPEG, GIF, etc.)
+- Progress tracking with detailed status updates
+- Error handling and logging
+- Clean and responsive web interface
+
+## Prerequisites
+
+- Python 3.6 or higher
+- Web browser (Chrome recommended)
+- Windows/Linux/MacOS compatible
 
 ## Installation
 
-1. Clone this repository or download the source code.
-2. Install required dependencies:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/kmkavinda6/RealTime_ImageResizer.git
+cd RealTime_ImageResizer
+```
+
+2. Create and activate virtual environment (recommended):
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+```
+
+3. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
-
-1. Run the application:
-
-```bash
-python app.py
-```
-
-2. In the web interface:
-   - Select source and destination folders
-   - Choose a resize method (scaling factor or single-side resolution)
-   - Click "Start Processing" to begin
-   - Click "Stop Processing" to end the monitoring
-
-## Resize Methods
-
-- **Scaling Factor**: Resize the image by multiplying both width and height by the specified factor (e.g., 0.5 for half size)
-- **Single Side Resolution**: Resize the image so that the longest side matches the specified resolution in pixels, preserving the aspect ratio
-
 ## Project Structure
 
-- `app.py`: Main application file with Eel setup and image processing logic
-- `web/`: Contains the web interface files
-  - `index.html`: Main HTML interface
-  - `css/style.css`: CSS styles
-  - `js/app.js`: JavaScript for the user interface
+```
+RealTime_ImageResizer/
+│
+├── main.py               # Entry point for the application
+├── requirements.txt      # Python dependencies
+├── README.md             # Documentation
+│
+├── modules/              # Application modules
+│   ├── file_watcher.py   # Handles folder monitoring
+│   ├── image_processor.py # Resizes images
+│   ├── gui.py            # User interface code
+│   └── logger.py         # Logging configuration
+│
+└── web/                  # Web interface files
+    ├── index.html        # Main HTML interface
+    ├── css/
+    │   └── style.css     # CSS styles
+    └── js/
+        └── app.js        # JavaScript application logic
+```
 
-## Dependencies
+## Usage
 
-- Python 3.6+
-- Eel (for the web interface)
-- Pillow (for image processing)
+1. Start the application:
+
+```bash
+python main.py
+```
+
+2. Configure Settings:
+
+   - Select source folder (where your original images are)
+   - Choose destination folder (where processed images will be saved)
+   - Select resize method and parameters
+   - Set file format preferences
+
+3. Processing Options:
+   - "Start Processing": Begin monitoring and processing
+   - "Stop Processing": End the monitoring session
+   - "Reset": Clear current settings
+   - "View Logs": Check processing history
+
+
+
+## Troubleshooting
+
+Common issues and solutions:
+
+- Permission errors: Run with appropriate privileges
+- Port conflicts: Change default port in app.py
+- Image corruption: Verify source file integrity
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Submit pull request with clear description
 
 ## License
 
-MIT
+MIT License - See LICENSE file for details
+
+## Acknowledgments
+
+- Eel framework developers
+- Pillow library contributors
+- All contributors and users
+

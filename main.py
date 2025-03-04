@@ -21,11 +21,11 @@ def main():
     logger.info("Starting Image Resizer application")
     
     # Initialize application components
-    app_dir = get_app_dir()
-    web_dir = os.path.join(app_dir, 'web')
+    # app_dir = get_app_dir()
+    # web_dir = os.path.join(app_dir, 'web')
     
     # Initialize Eel with the web folder
-    eel.init(web_dir)
+    eel.init('web')
     
     # Create application components
     image_processor = ImageProcessor(logger)
